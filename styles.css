@@ -1,0 +1,987 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+:root{
+  font-family:'Manrope',sans-serif;
+  color:#252825;
+  background:#bdc8cc;
+  font-synthesis:none;
+  text-rendering:optimizeLegibility;
+  --ink:#252825;
+  --paper:#bdc8cc;
+  --orange:#a95332;
+}
+*{box-sizing:border-box;scrollbar-width:none}
+html{min-width:320px;scroll-behavior:smooth;scrollbar-width:none;-ms-overflow-style:none}
+body{margin:0;min-width:320px;min-height:100vh;background:var(--paper);scrollbar-width:none;-ms-overflow-style:none}
+html::-webkit-scrollbar,body::-webkit-scrollbar,*::-webkit-scrollbar{display:none;width:0;height:0}
+a{color:inherit;text-decoration:none}
+button{font:inherit}
+.page-shell{
+  min-height:100svh;
+  overflow:hidden;
+  position:relative;
+  background:
+    radial-gradient(ellipse at 76% 53%,rgba(239,242,240,.5),transparent 40%),
+    linear-gradient(135deg,#c7d0d2 0%,#b8c4c8 52%,#aebbc0 100%);
+}
+.wrap{width:min(1440px,calc(100% - 112px));margin:0 auto}
+.nav{
+  height:96px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  position:relative;
+  z-index:5;
+}
+.wordmark{
+  font:700 27px/.9 'Space Grotesk',sans-serif;
+  letter-spacing:-.09em;
+  display:flex;
+  align-items:flex-start;
+  gap:9px;
+  color:#252825;
+}
+.wordmark span{
+  font:600 9px/1.2 'Manrope',sans-serif;
+  letter-spacing:.13em;
+  margin-top:3px;
+}
+.nav-links{
+  display:flex;
+  align-items:center;
+  justify-content:flex-end;
+  gap:clamp(24px,3.2vw,48px);
+}
+.nav-link{
+  position:relative;
+  display:inline-flex;
+  align-items:center;
+  padding:10px 0;
+  color:#343936;
+  font:700 12px 'Manrope',sans-serif;
+  letter-spacing:.005em;
+  transition:color .2s ease;
+}
+.nav-link::after{
+  content:'';
+  position:absolute;
+  left:0;
+  right:100%;
+  bottom:3px;
+  height:2px;
+  background:var(--orange);
+  transition:right .22s ease;
+}
+.nav-link:hover,.nav-link.is-active{color:var(--orange)}
+.nav-link:hover::after,.nav-link.is-active::after{right:0}
+.hero{
+  min-height:calc(100svh - 96px);
+  display:grid;
+  grid-template-columns:1.05fr .95fr;
+  column-gap:clamp(20px,2.1vw,32px);
+  align-items:center;
+  position:relative;
+  padding-bottom:64px;
+}
+.hero-copy{padding:0 2% 28px 3%;position:relative;z-index:2;max-width:620px}
+h1{
+  font:600 clamp(60px,6.8vw,100px)/.98 'Space Grotesk',sans-serif;
+  letter-spacing:-.085em;
+  margin:0 0 32px;
+  color:var(--ink);
+}
+.headline-first{
+  display:block;
+  font-size:.5em;
+  line-height:.86;
+  letter-spacing:-.105em;
+  white-space:nowrap;
+  margin-bottom:.13em;
+}
+.headline-second{
+  display:block;
+  margin-left:.28em;
+  white-space:nowrap;
+}
+h1 em{
+  display:inline-block;
+  font-style:normal;
+  color:var(--orange);
+  letter-spacing:-.09em;
+  transform:perspective(720px) rotateY(-8deg) rotateX(2deg);
+  transform-origin:left bottom;
+  text-shadow:none;
+  -webkit-text-stroke:0 transparent;
+}
+.headline-second em:last-of-type{
+  transform:perspective(720px) rotateY(-8deg) rotateX(2deg) skewX(-4deg);
+  transform-origin:left bottom;
+}
+.hero-sub{
+  font-size:14px;
+  line-height:1.9;
+  color:#505c5e;
+  margin:0;
+  max-width:465px;
+}
+.button{
+  display:inline-flex;
+  align-items:center;
+  gap:32px;
+  padding:18px 21px;
+  margin-top:37px;
+  font:700 11px 'Manrope',sans-serif;
+  letter-spacing:.015em;
+  transition:transform .25s,background .25s;
+}
+.button:hover{transform:translateY(-3px)}
+.button-dark{background:var(--ink);color:#eef0ed}
+.button-dark:hover{background:var(--orange)}
+.button svg{transition:transform .2s ease}
+.button:hover svg{transform:translate(2px,-2px)}
+.hero-visual{
+  position:relative;
+  min-height:680px;
+  align-self:stretch;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  margin:0;
+}
+.camera-stage{
+  position:absolute;
+  width:min(96%,860px);
+  aspect-ratio:1.4 / 1;
+  left:39%;
+  top:calc(50% - 44px);
+  transform:translate(-50%,-50%) scale(1.3);
+  transform-origin:50% 50%;
+  cursor:grab;
+  touch-action:pan-y;
+}
+.camera-stage:active{cursor:grabbing}
+.camera-stage canvas{width:100%;height:100%;outline:none;display:block}
+@media(max-width:1100px){
+  .wrap{width:calc(100% - 72px)}
+  .hero{grid-template-columns:1fr 1fr}
+  .hero-visual{min-height:590px;margin:0}
+  .camera-stage{width:min(108%,780px);left:40%}
+  h1{font-size:clamp(58px,6.8vw,88px)}
+}
+@media(max-width:760px){
+  .wrap{width:calc(100% - 42px)}
+  .nav{
+    height:auto;
+    min-height:76px;
+    padding:15px 0 10px;
+    flex-wrap:wrap;
+    row-gap:7px;
+  }
+  .nav-links{
+    order:2;
+    width:100%;
+    justify-content:space-between;
+    gap:10px;
+  }
+  .nav-link{font-size:11px;padding:8px 0}
+  .hero{
+    column-gap:0;
+    min-height:calc(100svh - 76px);
+    grid-template-columns:1fr;
+    padding-top:40px;
+    padding-bottom:22px;
+    align-content:start;
+  }
+  .hero-copy{padding:0;z-index:3}
+  h1{font-size:clamp(58px,12vw,88px);margin-bottom:20px}
+  .hero-sub{font-size:12px}
+  .button{margin-top:24px;padding:15px 17px}
+  .hero-visual{min-height:330px;margin:0 -8px}
+  .camera-stage{width:min(100%,430px);aspect-ratio:1.4 / 1;left:50%;top:50%;transform:translate(-50%,-50%) scale(1.3)}
+}
+@media(max-width:420px){
+  .wrap{width:calc(100% - 34px)}
+  .nav{min-height:72px;padding-top:13px}
+  .nav-links{gap:7px}
+  .nav-link{font-size:10px}
+  .wordmark{font-size:24px}
+  .hero{padding-top:35px}
+  h1{font-size:58px}
+  .hero-visual{min-height:300px;margin-top:6px}
+  .camera-stage{width:min(100%,380px)}
+}
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{transition:none!important;animation:none!important}
+}
+
+/* Camera intro plays on every page load. A star-shaped aperture opens from the camera's upper-right. */
+.intro-overlay{
+  position:fixed;
+  inset:0;
+  z-index:1000;
+  display:grid;
+  place-items:center;
+  overflow:hidden;
+  background:#25231f;
+  isolation:isolate;
+}
+.intro-camera{
+  position:absolute;
+  inset:0;
+  display:grid;
+  place-items:center;
+  width:100%;
+  height:100%;
+  opacity:1;
+  transform:scale(1);
+  transition:opacity .34s ease,transform .6s cubic-bezier(.2,.75,.25,1);
+}
+.intro-camera canvas{
+  display:block;
+  width:100%;
+  height:100%;
+  outline:none;
+}
+.intro-overlay.is-revealing{pointer-events:none}
+.intro-overlay.is-revealing .intro-camera{
+  opacity:0;
+  transform:scale(1.08);
+}
+/* A four-point star grows from the camera's upper-right and spins clockwise. */
+.page-shell.is-star-reveal{
+  position:relative;
+  z-index:1001;
+  clip-path:polygon(
+    calc(58% + 0.0000vmax) calc(40% - 0.0200vmax),
+    calc(58% + 0.0027vmax) calc(40% - 0.0027vmax),
+    calc(58% + 0.0200vmax) calc(40% + 0.0000vmax),
+    calc(58% + 0.0027vmax) calc(40% + 0.0027vmax),
+    calc(58% + 0.0000vmax) calc(40% + 0.0200vmax),
+    calc(58% - 0.0027vmax) calc(40% + 0.0027vmax),
+    calc(58% - 0.0200vmax) calc(40% + 0.0000vmax),
+    calc(58% - 0.0027vmax) calc(40% - 0.0027vmax)
+  );
+  will-change:clip-path;
+  animation:intro-four-star-reveal 1.6s linear forwards;
+}
+@keyframes intro-four-star-reveal{
+  0.0000%{clip-path:polygon(calc(58% + 0.0000vmax) calc(40% - 0.0200vmax), calc(58% + 0.0027vmax) calc(40% - 0.0027vmax), calc(58% + 0.0200vmax) calc(40% + 0.0000vmax), calc(58% + 0.0027vmax) calc(40% + 0.0027vmax), calc(58% + 0.0000vmax) calc(40% + 0.0200vmax), calc(58% - 0.0027vmax) calc(40% + 0.0027vmax), calc(58% - 0.0200vmax) calc(40% + 0.0000vmax), calc(58% - 0.0027vmax) calc(40% - 0.0027vmax));}
+  1.3889%{clip-path:polygon(calc(58% + 0.1036vmax) calc(40% - 0.4673vmax), calc(58% + 0.0767vmax) calc(40% - 0.0489vmax), calc(58% + 0.4673vmax) calc(40% + 0.1036vmax), calc(58% + 0.0489vmax) calc(40% + 0.0767vmax), calc(58% - 0.1036vmax) calc(40% + 0.4673vmax), calc(58% - 0.0767vmax) calc(40% + 0.0489vmax), calc(58% - 0.4673vmax) calc(40% - 0.1036vmax), calc(58% - 0.0489vmax) calc(40% - 0.0767vmax));}
+  2.7778%{clip-path:polygon(calc(58% + 0.7766vmax) calc(40% - 1.6654vmax), calc(58% + 0.3281vmax) calc(40% - 0.1194vmax), calc(58% + 1.6654vmax) calc(40% + 0.7766vmax), calc(58% + 0.1194vmax) calc(40% + 0.3281vmax), calc(58% - 0.7766vmax) calc(40% + 1.6654vmax), calc(58% - 0.3281vmax) calc(40% + 0.1194vmax), calc(58% - 1.6654vmax) calc(40% - 0.7766vmax), calc(58% - 0.1194vmax) calc(40% - 0.3281vmax));}
+  4.1667%{clip-path:polygon(calc(58% + 2.4782vmax) calc(40% - 3.2296vmax), calc(58% + 0.7668vmax) calc(40% - 0.1010vmax), calc(58% + 3.2296vmax) calc(40% + 2.4782vmax), calc(58% + 0.1010vmax) calc(40% + 0.7668vmax), calc(58% - 2.4782vmax) calc(40% + 3.2296vmax), calc(58% - 0.7668vmax) calc(40% + 0.1010vmax), calc(58% - 3.2296vmax) calc(40% - 2.4782vmax), calc(58% - 0.1010vmax) calc(40% - 0.7668vmax));}
+  5.5556%{clip-path:polygon(calc(58% + 5.4794vmax) calc(40% - 4.5978vmax), calc(58% + 1.3539vmax) calc(40% + 0.1184vmax), calc(58% + 4.5978vmax) calc(40% + 5.4794vmax), calc(58% - 0.1184vmax) calc(40% + 1.3539vmax), calc(58% - 5.4794vmax) calc(40% + 4.5978vmax), calc(58% - 1.3539vmax) calc(40% - 0.1184vmax), calc(58% - 4.5978vmax) calc(40% - 5.4794vmax), calc(58% + 0.1184vmax) calc(40% - 1.3539vmax));}
+  6.9444%{clip-path:polygon(calc(58% + 9.8085vmax) calc(40% - 5.1060vmax), calc(58% + 2.0038vmax) calc(40% + 0.6318vmax), calc(58% + 5.1060vmax) calc(40% + 9.8085vmax), calc(58% - 0.6318vmax) calc(40% + 2.0038vmax), calc(58% - 9.8085vmax) calc(40% + 5.1060vmax), calc(58% - 2.0038vmax) calc(40% - 0.6318vmax), calc(58% - 5.1060vmax) calc(40% - 9.8085vmax), calc(58% + 0.6318vmax) calc(40% - 2.0038vmax));}
+  8.3333%{clip-path:polygon(calc(58% + 15.2233vmax) calc(40% - 4.0791vmax), calc(58% + 2.5933vmax) calc(40% + 1.4972vmax), calc(58% + 4.0791vmax) calc(40% + 15.2233vmax), calc(58% - 1.4972vmax) calc(40% + 2.5933vmax), calc(58% - 15.2233vmax) calc(40% + 4.0791vmax), calc(58% - 2.5933vmax) calc(40% - 1.4972vmax), calc(58% - 4.0791vmax) calc(40% - 15.2233vmax), calc(58% + 1.4972vmax) calc(40% - 2.5933vmax));}
+  9.7222%{clip-path:polygon(calc(58% + 21.2141vmax) calc(40% - 0.9262vmax), calc(58% + 2.9746vmax) calc(40% + 2.7257vmax), calc(58% + 0.9262vmax) calc(40% + 21.2141vmax), calc(58% - 2.7257vmax) calc(40% + 2.9746vmax), calc(58% - 21.2141vmax) calc(40% + 0.9262vmax), calc(58% - 2.9746vmax) calc(40% - 2.7257vmax), calc(58% - 0.9262vmax) calc(40% - 21.2141vmax), calc(58% + 2.7257vmax) calc(40% - 2.9746vmax));}
+  11.1111%{clip-path:polygon(calc(58% + 27.0371vmax) calc(40% + 4.7674vmax), calc(58% + 2.9919vmax) calc(40% + 4.2729vmax), calc(58% - 4.7674vmax) calc(40% + 27.0371vmax), calc(58% - 4.2729vmax) calc(40% + 2.9919vmax), calc(58% - 27.0371vmax) calc(40% - 4.7674vmax), calc(58% - 2.9919vmax) calc(40% - 4.2729vmax), calc(58% + 4.7674vmax) calc(40% - 27.0371vmax), calc(58% + 4.2729vmax) calc(40% - 2.9919vmax));}
+  12.5000%{clip-path:polygon(calc(58% + 31.7760vmax) calc(40% + 13.1621vmax), calc(58% + 2.5008vmax) calc(40% + 6.0374vmax), calc(58% - 13.1621vmax) calc(40% + 31.7760vmax), calc(58% - 6.0374vmax) calc(40% + 2.5008vmax), calc(58% - 31.7760vmax) calc(40% - 13.1621vmax), calc(58% - 2.5008vmax) calc(40% - 6.0374vmax), calc(58% + 13.1621vmax) calc(40% - 31.7760vmax), calc(58% + 6.0374vmax) calc(40% - 2.5008vmax));}
+  13.8889%{clip-path:polygon(calc(58% + 34.4278vmax) calc(40% + 24.1066vmax), calc(58% + 1.3867vmax) calc(40% + 7.8641vmax), calc(58% - 24.1066vmax) calc(40% + 34.4278vmax), calc(58% - 7.8641vmax) calc(40% + 1.3867vmax), calc(58% - 34.4278vmax) calc(40% - 24.1066vmax), calc(58% - 1.3867vmax) calc(40% - 7.8641vmax), calc(58% + 24.1066vmax) calc(40% - 34.4278vmax), calc(58% + 7.8641vmax) calc(40% - 1.3867vmax));}
+  15.2778%{clip-path:polygon(calc(58% + 34.0036vmax) calc(40% + 37.1084vmax), calc(58% - 0.4171vmax) calc(40% + 9.5539vmax), calc(58% - 37.1084vmax) calc(40% + 34.0036vmax), calc(58% - 9.5539vmax) calc(40% - 0.4171vmax), calc(58% - 34.0036vmax) calc(40% - 37.1084vmax), calc(58% + 0.4171vmax) calc(40% - 9.5539vmax), calc(58% + 37.1084vmax) calc(40% - 34.0036vmax), calc(58% + 9.5539vmax) calc(40% + 0.4171vmax));}
+  16.6667%{clip-path:polygon(calc(58% + 29.6389vmax) calc(40% + 51.3361vmax), calc(58% - 2.9150vmax) calc(40% + 10.8790vmax), calc(58% - 51.3361vmax) calc(40% + 29.6389vmax), calc(58% - 10.8790vmax) calc(40% - 2.9150vmax), calc(58% - 29.6389vmax) calc(40% - 51.3361vmax), calc(58% + 2.9150vmax) calc(40% - 10.8790vmax), calc(58% + 51.3361vmax) calc(40% - 29.6389vmax), calc(58% + 10.8790vmax) calc(40% + 2.9150vmax));}
+  18.0556%{clip-path:polygon(calc(58% + 20.7009vmax) calc(40% + 65.6550vmax), calc(58% - 6.0396vmax) calc(40% + 11.6019vmax), calc(58% - 65.6550vmax) calc(40% + 20.7009vmax), calc(58% - 11.6019vmax) calc(40% - 6.0396vmax), calc(58% - 20.7009vmax) calc(40% - 65.6550vmax), calc(58% + 6.0396vmax) calc(40% - 11.6019vmax), calc(58% + 65.6550vmax) calc(40% - 20.7009vmax), calc(58% + 11.6019vmax) calc(40% + 6.0396vmax));}
+  19.4444%{clip-path:polygon(calc(58% + 6.8850vmax) calc(40% + 78.6955vmax), calc(58% - 9.6478vmax) calc(40% + 11.4978vmax), calc(58% - 78.6955vmax) calc(40% + 6.8850vmax), calc(58% - 11.4978vmax) calc(40% - 9.6478vmax), calc(58% - 6.8850vmax) calc(40% - 78.6955vmax), calc(58% + 9.6478vmax) calc(40% - 11.4978vmax), calc(58% + 78.6955vmax) calc(40% - 6.8850vmax), calc(58% + 11.4978vmax) calc(40% + 9.6478vmax));}
+  20.8333%{clip-path:polygon(calc(58% - 11.7104vmax) calc(40% + 88.9493vmax), calc(58% - 13.5237vmax) calc(40% + 10.3771vmax), calc(58% - 88.9493vmax) calc(40% - 11.7104vmax), calc(58% - 10.3771vmax) calc(40% - 13.5237vmax), calc(58% + 11.7104vmax) calc(40% - 88.9493vmax), calc(58% + 13.5237vmax) calc(40% - 10.3771vmax), calc(58% + 88.9493vmax) calc(40% + 11.7104vmax), calc(58% + 10.3771vmax) calc(40% + 13.5237vmax));}
+  22.2222%{clip-path:polygon(calc(58% - 34.5364vmax) calc(40% + 94.8880vmax), calc(58% - 17.3882vmax) calc(40% + 8.1083vmax), calc(58% - 94.8880vmax) calc(40% - 34.5364vmax), calc(58% - 8.1083vmax) calc(40% - 17.3882vmax), calc(58% + 34.5364vmax) calc(40% - 94.8880vmax), calc(58% + 17.3882vmax) calc(40% - 8.1083vmax), calc(58% + 94.8880vmax) calc(40% + 34.5364vmax), calc(58% + 8.1083vmax) calc(40% + 17.3882vmax));}
+  23.6111%{clip-path:polygon(calc(58% - 60.5821vmax) calc(40% + 95.0949vmax), calc(58% - 20.9152vmax) calc(40% + 4.6368vmax), calc(58% - 95.0949vmax) calc(40% - 60.5821vmax), calc(58% - 4.6368vmax) calc(40% - 20.9152vmax), calc(58% + 60.5821vmax) calc(40% - 95.0949vmax), calc(58% + 20.9152vmax) calc(40% - 4.6368vmax), calc(58% + 95.0949vmax) calc(40% + 60.5821vmax), calc(58% + 4.6368vmax) calc(40% + 20.9152vmax));}
+  25.0000%{clip-path:polygon(calc(58% - 88.4003vmax) calc(40% + 88.4003vmax), calc(58% - 23.7532vmax) calc(40% + 0.0000vmax), calc(58% - 88.4003vmax) calc(40% - 88.4003vmax), calc(58% - 0.0000vmax) calc(40% - 23.7532vmax), calc(58% + 88.4003vmax) calc(40% - 88.4003vmax), calc(58% + 23.7532vmax) calc(40% - 0.0000vmax), calc(58% + 88.4003vmax) calc(40% + 88.4003vmax), calc(58% + 0.0000vmax) calc(40% + 23.7532vmax));}
+  26.3889%{clip-path:polygon(calc(58% - 116.1719vmax) calc(40% + 74.0097vmax), calc(58% - 25.5509vmax) calc(40% - 5.6645vmax), calc(58% - 74.0097vmax) calc(40% - 116.1719vmax), calc(58% + 5.6645vmax) calc(40% - 25.5509vmax), calc(58% + 116.1719vmax) calc(40% - 74.0097vmax), calc(58% + 25.5509vmax) calc(40% + 5.6645vmax), calc(58% + 74.0097vmax) calc(40% + 116.1719vmax), calc(58% - 5.6645vmax) calc(40% + 25.5509vmax));}
+  27.7778%{clip-path:polygon(calc(58% - 141.8070vmax) calc(40% + 51.6135vmax), calc(58% - 25.9861vmax) calc(40% - 12.1175vmax), calc(58% - 51.6135vmax) calc(40% - 141.8070vmax), calc(58% + 12.1175vmax) calc(40% - 25.9861vmax), calc(58% + 141.8070vmax) calc(40% - 51.6135vmax), calc(58% + 25.9861vmax) calc(40% + 12.1175vmax), calc(58% + 51.6135vmax) calc(40% + 141.8070vmax), calc(58% - 12.1175vmax) calc(40% + 25.9861vmax));}
+  29.1667%{clip-path:polygon(calc(58% - 163.0763vmax) calc(40% + 21.4694vmax), calc(58% - 24.7938vmax) calc(40% - 19.0249vmax), calc(58% - 21.4694vmax) calc(40% - 163.0763vmax), calc(58% + 19.0249vmax) calc(40% - 24.7938vmax), calc(58% + 163.0763vmax) calc(40% - 21.4694vmax), calc(58% + 24.7938vmax) calc(40% + 19.0249vmax), calc(58% + 21.4694vmax) calc(40% + 163.0763vmax), calc(58% - 19.0249vmax) calc(40% + 24.7938vmax));}
+  30.5556%{clip-path:polygon(calc(58% - 177.7659vmax) calc(40% - 15.5525vmax), calc(58% - 21.7934vmax) calc(40% - 25.9724vmax), calc(58% + 15.5525vmax) calc(40% - 177.7659vmax), calc(58% + 25.9724vmax) calc(40% - 21.7934vmax), calc(58% + 177.7659vmax) calc(40% + 15.5525vmax), calc(58% + 21.7934vmax) calc(40% + 25.9724vmax), calc(58% - 15.5525vmax) calc(40% + 177.7659vmax), calc(58% - 25.9724vmax) calc(40% + 21.7934vmax));}
+  31.9444%{clip-path:polygon(calc(58% - 183.8446vmax) calc(40% - 57.9660vmax), calc(58% - 16.9118vmax) calc(40% - 32.4873vmax), calc(58% + 57.9660vmax) calc(40% - 183.8446vmax), calc(58% + 32.4873vmax) calc(40% - 16.9118vmax), calc(58% + 183.8446vmax) calc(40% + 57.9660vmax), calc(58% + 16.9118vmax) calc(40% + 32.4873vmax), calc(58% - 57.9660vmax) calc(40% + 183.8446vmax), calc(58% - 32.4873vmax) calc(40% + 16.9118vmax));}
+  33.3333%{clip-path:polygon(calc(58% - 179.6329vmax) calc(40% - 103.7111vmax), calc(58% - 10.2001vmax) calc(40% - 38.0674vmax), calc(58% + 103.7111vmax) calc(40% - 179.6329vmax), calc(58% + 38.0674vmax) calc(40% - 10.2001vmax), calc(58% + 179.6329vmax) calc(40% + 103.7111vmax), calc(58% + 10.2001vmax) calc(40% + 38.0674vmax), calc(58% - 103.7111vmax) calc(40% + 179.6329vmax), calc(58% - 38.0674vmax) calc(40% + 10.2001vmax));}
+  34.7222%{clip-path:polygon(calc(58% - 163.9607vmax) calc(40% - 150.2423vmax), calc(58% - 1.8431vmax) calc(40% - 42.2133vmax), calc(58% + 150.2423vmax) calc(40% - 163.9607vmax), calc(58% + 42.2133vmax) calc(40% - 1.8431vmax), calc(58% + 163.9607vmax) calc(40% + 150.2423vmax), calc(58% + 1.8431vmax) calc(40% + 42.2133vmax), calc(58% - 150.2423vmax) calc(40% + 163.9607vmax), calc(58% - 42.2133vmax) calc(40% + 1.8431vmax));}
+  36.1111%{clip-path:polygon(calc(58% - 136.3013vmax) calc(40% - 194.6584vmax), calc(58% + 7.8403vmax) calc(40% - 44.4645vmax), calc(58% + 194.6584vmax) calc(40% - 136.3013vmax), calc(58% + 44.4645vmax) calc(40% + 7.8403vmax), calc(58% + 136.3013vmax) calc(40% + 194.6584vmax), calc(58% - 7.8403vmax) calc(40% + 44.4645vmax), calc(58% - 194.6584vmax) calc(40% + 136.3013vmax), calc(58% - 44.4645vmax) calc(40% - 7.8403vmax));}
+  37.5000%{clip-path:polygon(calc(58% - 96.8720vmax) calc(40% - 233.8696vmax), calc(58% + 18.4057vmax) calc(40% - 44.4352vmax), calc(58% + 233.8696vmax) calc(40% - 96.8720vmax), calc(58% + 44.4352vmax) calc(40% + 18.4057vmax), calc(58% + 96.8720vmax) calc(40% + 233.8696vmax), calc(58% - 18.4057vmax) calc(40% + 44.4352vmax), calc(58% - 233.8696vmax) calc(40% + 96.8720vmax), calc(58% - 44.4352vmax) calc(40% - 18.4057vmax));}
+  38.8889%{clip-path:polygon(calc(58% - 46.6896vmax) calc(40% - 264.7899vmax), calc(58% + 29.3018vmax) calc(40% - 41.8474vmax), calc(58% + 264.7899vmax) calc(40% - 46.6896vmax), calc(58% + 41.8474vmax) calc(40% + 29.3018vmax), calc(58% + 46.6896vmax) calc(40% + 264.7899vmax), calc(58% - 29.3018vmax) calc(40% + 41.8474vmax), calc(58% - 264.7899vmax) calc(40% + 46.6896vmax), calc(58% - 41.8474vmax) calc(40% - 29.3018vmax));}
+  40.2778%{clip-path:polygon(calc(58% + 12.4235vmax) calc(40% - 284.5455vmax), calc(58% + 39.8979vmax) calc(40% - 36.5597vmax), calc(58% + 284.5455vmax) calc(40% + 12.4235vmax), calc(58% + 36.5597vmax) calc(40% + 39.8979vmax), calc(58% - 12.4235vmax) calc(40% + 284.5455vmax), calc(58% - 39.8979vmax) calc(40% + 36.5597vmax), calc(58% - 284.5455vmax) calc(40% - 12.4235vmax), calc(58% - 36.5597vmax) calc(40% - 39.8979vmax));}
+  41.6667%{clip-path:polygon(calc(58% + 77.8886vmax) calc(40% - 290.6842vmax), calc(58% + 49.5179vmax) calc(40% - 28.5891vmax), calc(58% + 290.6842vmax) calc(40% + 77.8886vmax), calc(58% + 28.5891vmax) calc(40% + 49.5179vmax), calc(58% - 77.8886vmax) calc(40% + 290.6842vmax), calc(58% - 49.5179vmax) calc(40% + 28.5891vmax), calc(58% - 290.6842vmax) calc(40% - 77.8886vmax), calc(58% - 28.5891vmax) calc(40% - 49.5179vmax));}
+  43.0556%{clip-path:polygon(calc(58% + 146.4734vmax) calc(40% - 281.3728vmax), calc(58% + 57.4813vmax) calc(40% - 18.1238vmax), calc(58% + 281.3728vmax) calc(40% + 146.4734vmax), calc(58% + 18.1238vmax) calc(40% + 57.4813vmax), calc(58% - 146.4734vmax) calc(40% + 281.3728vmax), calc(58% - 57.4813vmax) calc(40% + 18.1238vmax), calc(58% - 281.3728vmax) calc(40% - 146.4734vmax), calc(58% - 18.1238vmax) calc(40% - 57.4813vmax));}
+  44.4444%{clip-path:polygon(calc(58% + 214.4464vmax) calc(40% - 255.5672vmax), calc(58% + 63.1465vmax) calc(40% - 5.5246vmax), calc(58% + 255.5672vmax) calc(40% + 214.4464vmax), calc(58% + 5.5246vmax) calc(40% + 63.1465vmax), calc(58% - 214.4464vmax) calc(40% + 255.5672vmax), calc(58% - 63.1465vmax) calc(40% + 5.5246vmax), calc(58% - 255.5672vmax) calc(40% - 214.4464vmax), calc(58% - 5.5246vmax) calc(40% - 63.1465vmax));}
+  45.8333%{clip-path:polygon(calc(58% + 277.7744vmax) calc(40% - 213.1438vmax), calc(58% + 65.9550vmax) calc(40% + 8.6831vmax), calc(58% + 213.1438vmax) calc(40% + 277.7744vmax), calc(58% - 8.6831vmax) calc(40% + 65.9550vmax), calc(58% - 277.7744vmax) calc(40% + 213.1438vmax), calc(58% - 65.9550vmax) calc(40% - 8.6831vmax), calc(58% - 213.1438vmax) calc(40% - 277.7744vmax), calc(58% + 8.6831vmax) calc(40% - 65.9550vmax));}
+  47.2222%{clip-path:polygon(calc(58% + 332.3538vmax) calc(40% - 154.9791vmax), calc(58% + 65.4733vmax) calc(40% + 23.8303vmax), calc(58% + 154.9791vmax) calc(40% + 332.3538vmax), calc(58% - 23.8303vmax) calc(40% + 65.4733vmax), calc(58% - 332.3538vmax) calc(40% + 154.9791vmax), calc(58% - 65.4733vmax) calc(40% - 23.8303vmax), calc(58% - 154.9791vmax) calc(40% - 332.3538vmax), calc(58% + 23.8303vmax) calc(40% - 65.4733vmax));}
+  48.6111%{clip-path:polygon(calc(58% + 374.2612vmax) calc(40% - 82.9717vmax), calc(58% + 61.4294vmax) calc(40% + 39.1348vmax), calc(58% + 82.9717vmax) calc(40% + 374.2612vmax), calc(58% - 39.1348vmax) calc(40% + 61.4294vmax), calc(58% - 374.2612vmax) calc(40% + 82.9717vmax), calc(58% - 61.4294vmax) calc(40% - 39.1348vmax), calc(58% - 82.9717vmax) calc(40% - 374.2612vmax), calc(58% + 39.1348vmax) calc(40% - 61.4294vmax));}
+  50.0000%{clip-path:polygon(calc(58% + 400.0100vmax) calc(40% - 0.0000vmax), calc(58% + 53.7415vmax) calc(40% + 53.7415vmax), calc(58% + 0.0000vmax) calc(40% + 400.0100vmax), calc(58% - 53.7415vmax) calc(40% + 53.7415vmax), calc(58% - 400.0100vmax) calc(40% + 0.0000vmax), calc(58% - 53.7415vmax) calc(40% - 53.7415vmax), calc(58% - 0.0000vmax) calc(40% - 400.0100vmax), calc(58% + 53.7415vmax) calc(40% - 53.7415vmax));}
+  51.3889%{clip-path:polygon(calc(58% + 406.7952vmax) calc(40% + 90.1843vmax), calc(58% + 42.5368vmax) calc(40% + 66.7693vmax), calc(58% - 90.1843vmax) calc(40% + 406.7952vmax), calc(58% - 66.7693vmax) calc(40% + 42.5368vmax), calc(58% - 406.7952vmax) calc(40% - 90.1843vmax), calc(58% - 42.5368vmax) calc(40% - 66.7693vmax), calc(58% + 90.1843vmax) calc(40% - 406.7952vmax), calc(58% + 66.7693vmax) calc(40% - 42.5368vmax));}
+  52.7778%{clip-path:polygon(calc(58% + 392.7106vmax) calc(40% + 183.1240vmax), calc(58% + 28.1580vmax) calc(40% + 77.3635vmax), calc(58% - 183.1240vmax) calc(40% + 392.7106vmax), calc(58% - 77.3635vmax) calc(40% + 28.1580vmax), calc(58% - 392.7106vmax) calc(40% - 183.1240vmax), calc(58% - 28.1580vmax) calc(40% - 77.3635vmax), calc(58% + 183.1240vmax) calc(40% - 392.7106vmax), calc(58% + 77.3635vmax) calc(40% - 28.1580vmax));}
+  54.1667%{clip-path:polygon(calc(58% + 356.9241vmax) calc(40% + 273.8775vmax), calc(58% + 11.1573vmax) calc(40% + 84.7484vmax), calc(58% - 273.8775vmax) calc(40% + 356.9241vmax), calc(58% - 84.7484vmax) calc(40% + 11.1573vmax), calc(58% - 356.9241vmax) calc(40% - 273.8775vmax), calc(58% - 11.1573vmax) calc(40% - 84.7484vmax), calc(58% + 273.8775vmax) calc(40% - 356.9241vmax), calc(58% + 84.7484vmax) calc(40% - 11.1573vmax));}
+  55.5556%{clip-path:polygon(calc(58% + 299.7966vmax) calc(40% + 357.2836vmax), calc(58% - 7.7234vmax) calc(40% + 88.2789vmax), calc(58% - 357.2836vmax) calc(40% + 299.7966vmax), calc(58% - 88.2789vmax) calc(40% - 7.7234vmax), calc(58% - 299.7966vmax) calc(40% - 357.2836vmax), calc(58% + 7.7234vmax) calc(40% - 88.2789vmax), calc(58% + 357.2836vmax) calc(40% - 299.7966vmax), calc(58% + 88.2789vmax) calc(40% + 7.7234vmax));}
+  56.9444%{clip-path:polygon(calc(58% + 222.9347vmax) calc(40% + 428.2536vmax), calc(58% - 27.5847vmax) calc(40% + 87.4873vmax), calc(58% - 428.2536vmax) calc(40% + 222.9347vmax), calc(58% - 87.4873vmax) calc(40% - 27.5847vmax), calc(58% - 222.9347vmax) calc(40% - 428.2536vmax), calc(58% + 27.5847vmax) calc(40% - 87.4873vmax), calc(58% + 428.2536vmax) calc(40% - 222.9347vmax), calc(58% + 87.4873vmax) calc(40% + 27.5847vmax));}
+  58.3333%{clip-path:polygon(calc(58% + 129.1718vmax) calc(40% + 482.0758vmax), calc(58% - 47.4128vmax) calc(40% + 82.1213vmax), calc(58% - 482.0758vmax) calc(40% + 129.1718vmax), calc(58% - 82.1213vmax) calc(40% - 47.4128vmax), calc(58% - 129.1718vmax) calc(40% - 482.0758vmax), calc(58% + 47.4128vmax) calc(40% - 82.1213vmax), calc(58% + 482.0758vmax) calc(40% - 129.1718vmax), calc(58% + 82.1213vmax) calc(40% + 47.4128vmax));}
+  59.7222%{clip-path:polygon(calc(58% + 22.4729vmax) calc(40% + 514.7131vmax), calc(58% - 66.1326vmax) calc(40% + 72.1711vmax), calc(58% - 514.7131vmax) calc(40% + 22.4729vmax), calc(58% - 72.1711vmax) calc(40% - 66.1326vmax), calc(58% - 22.4729vmax) calc(40% - 514.7131vmax), calc(58% + 66.1326vmax) calc(40% - 72.1711vmax), calc(58% + 514.7131vmax) calc(40% - 22.4729vmax), calc(58% + 72.1711vmax) calc(40% + 66.1326vmax));}
+  61.1111%{clip-path:polygon(calc(58% - 92.2324vmax) calc(40% + 523.0760vmax), calc(58% - 82.6669vmax) calc(40% + 57.8840vmax), calc(58% - 523.0760vmax) calc(40% - 92.2324vmax), calc(58% - 57.8840vmax) calc(40% - 82.6669vmax), calc(58% + 92.2324vmax) calc(40% - 523.0760vmax), calc(58% + 82.6669vmax) calc(40% - 57.8840vmax), calc(58% + 523.0760vmax) calc(40% + 92.2324vmax), calc(58% + 57.8840vmax) calc(40% + 82.6669vmax));}
+  62.5000%{clip-path:polygon(calc(58% - 209.2824vmax) calc(40% + 505.2525vmax), calc(58% - 95.9980vmax) calc(40% + 39.7637vmax), calc(58% - 505.2525vmax) calc(40% - 209.2824vmax), calc(58% - 39.7637vmax) calc(40% - 95.9980vmax), calc(58% + 209.2824vmax) calc(40% - 505.2525vmax), calc(58% + 95.9980vmax) calc(40% - 39.7637vmax), calc(58% + 505.2525vmax) calc(40% + 209.2824vmax), calc(58% + 39.7637vmax) calc(40% + 95.9980vmax));}
+  63.8889%{clip-path:polygon(calc(58% - 322.5713vmax) calc(40% + 460.6796vmax), calc(58% - 105.2300vmax) calc(40% + 18.5549vmax), calc(58% - 460.6796vmax) calc(40% - 322.5713vmax), calc(58% - 18.5549vmax) calc(40% - 105.2300vmax), calc(58% + 322.5713vmax) calc(40% - 460.6796vmax), calc(58% + 105.2300vmax) calc(40% - 18.5549vmax), calc(58% + 460.6796vmax) calc(40% + 322.5713vmax), calc(58% + 18.5549vmax) calc(40% + 105.2300vmax));}
+  65.2778%{clip-path:polygon(calc(58% - 425.8759vmax) calc(40% + 390.2434vmax), calc(58% - 109.6459vmax) calc(40% - 4.7872vmax), calc(58% - 390.2434vmax) calc(40% - 425.8759vmax), calc(58% + 4.7872vmax) calc(40% - 109.6459vmax), calc(58% + 425.8759vmax) calc(40% - 390.2434vmax), calc(58% + 109.6459vmax) calc(40% + 4.7872vmax), calc(58% + 390.2434vmax) calc(40% + 425.8759vmax), calc(58% - 4.7872vmax) calc(40% + 109.6459vmax));}
+  66.6667%{clip-path:polygon(calc(58% - 513.2047vmax) calc(40% + 296.2989vmax), calc(58% - 108.7570vmax) calc(40% - 29.1414vmax), calc(58% - 296.2989vmax) calc(40% - 513.2047vmax), calc(58% + 29.1414vmax) calc(40% - 108.7570vmax), calc(58% + 513.2047vmax) calc(40% - 296.2989vmax), calc(58% + 108.7570vmax) calc(40% + 29.1414vmax), calc(58% + 296.2989vmax) calc(40% + 513.2047vmax), calc(58% - 29.1414vmax) calc(40% + 108.7570vmax));}
+  68.0556%{clip-path:polygon(calc(58% - 579.1481vmax) calc(40% + 182.6047vmax), calc(58% - 102.3417vmax) calc(40% - 53.2757vmax), calc(58% - 182.6047vmax) calc(40% - 579.1481vmax), calc(58% + 53.2757vmax) calc(40% - 102.3417vmax), calc(58% + 579.1481vmax) calc(40% - 182.6047vmax), calc(58% + 102.3417vmax) calc(40% + 53.2757vmax), calc(58% + 182.6047vmax) calc(40% + 579.1481vmax), calc(58% - 53.2757vmax) calc(40% + 102.3417vmax));}
+  69.4444%{clip-path:polygon(calc(58% - 619.2098vmax) calc(40% + 54.1738vmax), calc(58% - 90.4693vmax) calc(40% - 75.9127vmax), calc(58% - 54.1738vmax) calc(40% - 619.2098vmax), calc(58% + 75.9127vmax) calc(40% - 90.4693vmax), calc(58% + 619.2098vmax) calc(40% - 54.1738vmax), calc(58% + 90.4693vmax) calc(40% + 75.9127vmax), calc(58% + 54.1738vmax) calc(40% + 619.2098vmax), calc(58% - 75.9127vmax) calc(40% + 90.4693vmax));}
+  70.8333%{clip-path:polygon(calc(58% - 630.0994vmax) calc(40% - 82.9542vmax), calc(58% - 73.5091vmax) calc(40% - 95.7990vmax), calc(58% + 82.9542vmax) calc(40% - 630.0994vmax), calc(58% + 95.7990vmax) calc(40% - 73.5091vmax), calc(58% + 630.0994vmax) calc(40% + 82.9542vmax), calc(58% + 73.5091vmax) calc(40% + 95.7990vmax), calc(58% - 82.9542vmax) calc(40% + 630.0994vmax), calc(58% - 95.7990vmax) calc(40% + 73.5091vmax));}
+  72.2222%{clip-path:polygon(calc(58% - 609.9659vmax) calc(40% - 222.0094vmax), calc(58% - 52.1221vmax) calc(40% - 111.7761vmax), calc(58% + 222.0094vmax) calc(40% - 609.9659vmax), calc(58% + 111.7761vmax) calc(40% - 52.1221vmax), calc(58% + 609.9659vmax) calc(40% + 222.0094vmax), calc(58% + 52.1221vmax) calc(40% + 111.7761vmax), calc(58% - 222.0094vmax) calc(40% + 609.9659vmax), calc(58% - 111.7761vmax) calc(40% + 52.1221vmax));}
+  73.6111%{clip-path:polygon(calc(58% - 558.5581vmax) calc(40% - 355.8408vmax), calc(58% - 27.2351vmax) calc(40% - 122.8498vmax), calc(58% + 355.8408vmax) calc(40% - 558.5581vmax), calc(58% + 122.8498vmax) calc(40% - 27.2351vmax), calc(58% + 558.5581vmax) calc(40% + 355.8408vmax), calc(58% + 27.2351vmax) calc(40% + 122.8498vmax), calc(58% - 355.8408vmax) calc(40% + 558.5581vmax), calc(58% - 122.8498vmax) calc(40% + 27.2351vmax));}
+  75.0000%{clip-path:polygon(calc(58% - 477.2993vmax) calc(40% - 477.2993vmax), calc(58% + 0.0000vmax) calc(40% - 128.2506vmax), calc(58% + 477.2993vmax) calc(40% - 477.2993vmax), calc(58% + 128.2506vmax) calc(40% - 0.0000vmax), calc(58% + 477.2993vmax) calc(40% + 477.2993vmax), calc(58% - 0.0000vmax) calc(40% + 128.2506vmax), calc(58% - 477.2993vmax) calc(40% + 477.2993vmax), calc(58% - 128.2506vmax) calc(40% + 0.0000vmax));}
+  76.3889%{clip-path:polygon(calc(58% - 369.2683vmax) calc(40% - 579.6352vmax), calc(58% + 28.2628vmax) calc(40% - 127.4855vmax), calc(58% + 579.6352vmax) calc(40% - 369.2683vmax), calc(58% + 127.4855vmax) calc(40% + 28.2628vmax), calc(58% + 369.2683vmax) calc(40% + 579.6352vmax), calc(58% - 28.2628vmax) calc(40% + 127.4855vmax), calc(58% - 579.6352vmax) calc(40% + 369.2683vmax), calc(58% - 127.4855vmax) calc(40% - 28.2628vmax));}
+  77.7778%{clip-path:polygon(calc(58% - 239.0865vmax) calc(40% - 656.8849vmax), calc(58% + 56.1313vmax) calc(40% - 120.3740vmax), calc(58% + 656.8849vmax) calc(40% - 239.0865vmax), calc(58% + 120.3740vmax) calc(40% + 56.1313vmax), calc(58% + 239.0865vmax) calc(40% + 656.8849vmax), calc(58% - 56.1313vmax) calc(40% + 120.3740vmax), calc(58% - 656.8849vmax) calc(40% + 239.0865vmax), calc(58% - 120.3740vmax) calc(40% - 56.1313vmax));}
+  79.1667%{clip-path:polygon(calc(58% - 92.7132vmax) calc(40% - 704.2264vmax), calc(58% + 82.1570vmax) calc(40% - 107.0691vmax), calc(58% + 704.2264vmax) calc(40% - 92.7132vmax), calc(58% + 107.0691vmax) calc(40% + 82.1570vmax), calc(58% + 92.7132vmax) calc(40% + 704.2264vmax), calc(58% - 82.1570vmax) calc(40% + 107.0691vmax), calc(58% - 704.2264vmax) calc(40% + 92.7132vmax), calc(58% - 107.0691vmax) calc(40% - 82.1570vmax));}
+  80.5556%{clip-path:polygon(calc(58% + 62.8414vmax) calc(40% - 718.2802vmax), calc(58% + 104.9439vmax) calc(40% - 88.0584vmax), calc(58% + 718.2802vmax) calc(40% + 62.8414vmax), calc(58% + 88.0584vmax) calc(40% + 104.9439vmax), calc(58% - 62.8414vmax) calc(40% + 718.2802vmax), calc(58% - 104.9439vmax) calc(40% + 88.0584vmax), calc(58% - 718.2802vmax) calc(40% - 62.8414vmax), calc(58% - 88.0584vmax) calc(40% - 104.9439vmax));}
+  81.9444%{clip-path:polygon(calc(58% + 219.8697vmax) calc(40% - 697.3377vmax), calc(58% + 123.2271vmax) calc(40% - 64.1480vmax), calc(58% + 697.3377vmax) calc(40% + 219.8697vmax), calc(58% + 64.1480vmax) calc(40% + 123.2271vmax), calc(58% - 219.8697vmax) calc(40% + 697.3377vmax), calc(58% - 123.2271vmax) calc(40% + 64.1480vmax), calc(58% - 697.3377vmax) calc(40% - 219.8697vmax), calc(58% - 64.1480vmax) calc(40% - 123.2271vmax));}
+  83.3333%{clip-path:polygon(calc(58% + 370.3711vmax) calc(40% - 641.5016vmax), calc(58% + 135.9454vmax) calc(40% - 36.4265vmax), calc(58% + 641.5016vmax) calc(40% + 370.3711vmax), calc(58% + 36.4265vmax) calc(40% + 135.9454vmax), calc(58% - 370.3711vmax) calc(40% + 641.5016vmax), calc(58% - 135.9454vmax) calc(40% + 36.4265vmax), calc(58% - 641.5016vmax) calc(40% - 370.3711vmax), calc(58% - 36.4265vmax) calc(40% - 135.9454vmax));}
+  84.7222%{clip-path:polygon(calc(58% + 506.4821vmax) calc(40% - 552.7282vmax), calc(58% + 142.3052vmax) calc(40% - 6.2132vmax), calc(58% + 552.7282vmax) calc(40% + 506.4821vmax), calc(58% + 6.2132vmax) calc(40% + 142.3052vmax), calc(58% - 506.4821vmax) calc(40% + 552.7282vmax), calc(58% - 142.3052vmax) calc(40% + 6.2132vmax), calc(58% - 552.7282vmax) calc(40% - 506.4821vmax), calc(58% - 6.2132vmax) calc(40% - 142.3052vmax));}
+  86.1111%{clip-path:polygon(calc(58% + 620.9102vmax) calc(40% - 434.7660vmax), calc(58% + 141.8304vmax) calc(40% + 25.0085vmax), calc(58% + 434.7660vmax) calc(40% + 620.9102vmax), calc(58% - 25.0085vmax) calc(40% + 141.8304vmax), calc(58% - 620.9102vmax) calc(40% + 434.7660vmax), calc(58% - 141.8304vmax) calc(40% - 25.0085vmax), calc(58% - 434.7660vmax) calc(40% - 620.9102vmax), calc(58% + 25.0085vmax) calc(40% - 141.8304vmax));}
+  87.5000%{clip-path:polygon(calc(58% + 707.3461vmax) calc(40% - 292.9923vmax), calc(58% + 134.3958vmax) calc(40% + 55.6685vmax), calc(58% + 292.9923vmax) calc(40% + 707.3461vmax), calc(58% - 55.6685vmax) calc(40% + 134.3958vmax), calc(58% - 707.3461vmax) calc(40% + 292.9923vmax), calc(58% - 134.3958vmax) calc(40% - 55.6685vmax), calc(58% - 292.9923vmax) calc(40% - 707.3461vmax), calc(58% + 55.6685vmax) calc(40% - 134.3958vmax));}
+  88.8889%{clip-path:polygon(calc(58% + 760.8288vmax) calc(40% - 134.1547vmax), calc(58% + 120.2413vmax) calc(40% + 84.1939vmax), calc(58% + 134.1547vmax) calc(40% + 760.8288vmax), calc(58% - 84.1939vmax) calc(40% + 120.2413vmax), calc(58% - 760.8288vmax) calc(40% + 134.1547vmax), calc(58% - 120.2413vmax) calc(40% - 84.1939vmax), calc(58% - 134.1547vmax) calc(40% - 760.8288vmax), calc(58% + 84.1939vmax) calc(40% - 120.2413vmax));}
+  90.2778%{clip-path:polygon(calc(58% + 778.0444vmax) calc(40% + 33.9702vmax), calc(58% + 99.9666vmax) calc(40% + 109.0944vmax), calc(58% - 33.9702vmax) calc(40% + 778.0444vmax), calc(58% - 109.0944vmax) calc(40% + 99.9666vmax), calc(58% - 778.0444vmax) calc(40% - 33.9702vmax), calc(58% - 99.9666vmax) calc(40% - 109.0944vmax), calc(58% + 33.9702vmax) calc(40% - 778.0444vmax), calc(58% + 109.0944vmax) calc(40% - 99.9666vmax));}
+  91.6667%{clip-path:polygon(calc(58% + 757.5367vmax) calc(40% + 202.9813vmax), calc(58% + 74.5047vmax) calc(40% + 129.0459vmax), calc(58% - 202.9813vmax) calc(40% + 757.5367vmax), calc(58% - 129.0459vmax) calc(40% + 74.5047vmax), calc(58% - 757.5367vmax) calc(40% - 202.9813vmax), calc(58% - 74.5047vmax) calc(40% - 129.0459vmax), calc(58% + 202.9813vmax) calc(40% - 757.5367vmax), calc(58% + 129.0459vmax) calc(40% - 74.5047vmax));}
+  93.0556%{clip-path:polygon(calc(58% + 699.8179vmax) calc(40% + 364.3021vmax), calc(58% + 45.0766vmax) calc(40% + 142.9648vmax), calc(58% - 364.3021vmax) calc(40% + 699.8179vmax), calc(58% - 142.9648vmax) calc(40% + 45.0766vmax), calc(58% - 699.8179vmax) calc(40% - 364.3021vmax), calc(58% - 45.0766vmax) calc(40% - 142.9648vmax), calc(58% + 364.3021vmax) calc(40% - 699.8179vmax), calc(58% + 142.9648vmax) calc(40% - 45.0766vmax));}
+  94.4444%{clip-path:polygon(calc(58% + 607.3715vmax) calc(40% + 509.6452vmax), calc(58% + 13.1296vmax) calc(40% + 150.0715vmax), calc(58% - 509.6452vmax) calc(40% + 607.3715vmax), calc(58% - 150.0715vmax) calc(40% + 13.1296vmax), calc(58% - 607.3715vmax) calc(40% - 509.6452vmax), calc(58% - 13.1296vmax) calc(40% - 150.0715vmax), calc(58% + 509.6452vmax) calc(40% - 607.3715vmax), calc(58% + 150.0715vmax) calc(40% - 13.1296vmax));}
+  95.8333%{clip-path:polygon(calc(58% + 484.5432vmax) calc(40% + 631.4689vmax), calc(58% - 19.7395vmax) calc(40% + 149.9365vmax), calc(58% - 631.4689vmax) calc(40% + 484.5432vmax), calc(58% - 149.9365vmax) calc(40% - 19.7395vmax), calc(58% - 484.5432vmax) calc(40% - 631.4689vmax), calc(58% + 19.7395vmax) calc(40% - 149.9365vmax), calc(58% + 631.4689vmax) calc(40% - 484.5432vmax), calc(58% + 149.9365vmax) calc(40% + 19.7395vmax));}
+  97.2222%{clip-path:polygon(calc(58% + 337.3265vmax) calc(40% + 723.3990vmax), calc(58% - 51.8690vmax) calc(40% + 142.5088vmax), calc(58% - 723.3990vmax) calc(40% + 337.3265vmax), calc(58% - 142.5088vmax) calc(40% - 51.8690vmax), calc(58% - 337.3265vmax) calc(40% - 723.3990vmax), calc(58% + 51.8690vmax) calc(40% - 142.5088vmax), calc(58% + 723.3990vmax) calc(40% - 337.3265vmax), calc(58% + 142.5088vmax) calc(40% + 51.8690vmax));}
+  98.6111%{clip-path:polygon(calc(58% + 173.0524vmax) calc(40% + 780.5890vmax), calc(58% - 81.6227vmax) calc(40% + 128.1220vmax), calc(58% - 780.5890vmax) calc(40% + 173.0524vmax), calc(58% - 128.1220vmax) calc(40% - 81.6227vmax), calc(58% - 173.0524vmax) calc(40% - 780.5890vmax), calc(58% + 81.6227vmax) calc(40% - 128.1220vmax), calc(58% + 780.5890vmax) calc(40% - 173.0524vmax), calc(58% + 128.1220vmax) calc(40% + 81.6227vmax));}
+  100.0000%{clip-path:polygon(calc(58% + 0.0000vmax) calc(40% + 800.0000vmax), calc(58% - 107.4802vmax) calc(40% + 107.4802vmax), calc(58% - 800.0000vmax) calc(40% + 0.0000vmax), calc(58% - 107.4802vmax) calc(40% - 107.4802vmax), calc(58% - 0.0000vmax) calc(40% - 800.0000vmax), calc(58% + 107.4802vmax) calc(40% - 107.4802vmax), calc(58% + 800.0000vmax) calc(40% - 0.0000vmax), calc(58% + 107.4802vmax) calc(40% + 107.4802vmax));}
+}
+@media(prefers-reduced-motion:reduce){
+  .page-shell.is-star-reveal{animation:intro-four-star-reveal .35s linear forwards!important}
+  .intro-camera{transition-duration:.15s}
+}
+
+
+/* Minimal studio footer */
+.site-footer{
+  position:relative;
+  z-index:1;
+  padding:42px 0 22px;
+  border-top:1px solid rgba(37,40,37,.17);
+  background:rgba(239,242,240,.16);
+}
+.footer-main{
+  display:grid;
+  grid-template-columns:1.15fr .9fr 1fr;
+  gap:clamp(28px,5vw,76px);
+  align-items:start;
+  padding-bottom:34px;
+}
+.footer-wordmark{
+  display:inline-flex;
+  align-items:flex-start;
+  gap:8px;
+  color:var(--ink);
+  font:700 25px/.9 'Space Grotesk',sans-serif;
+  letter-spacing:-.09em;
+}
+.footer-wordmark span{
+  margin-top:3px;
+  font:600 8px/1.2 'Manrope',sans-serif;
+  letter-spacing:.13em;
+}
+.footer-tagline{
+  margin:13px 0 0;
+  color:#566164;
+  font-size:12px;
+}
+.footer-heading{
+  margin:1px 0 14px;
+  color:var(--ink);
+  font:700 10px 'Manrope',sans-serif;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+}
+.footer-email{
+  display:inline-block;
+  color:#343936;
+  font-size:13px;
+  font-weight:700;
+  transition:color .2s ease;
+}
+.footer-email:hover{color:var(--orange)}
+.footer-column p{
+  margin:0 0 8px;
+  color:#566164;
+  font-size:12px;
+  line-height:1.65;
+}
+.footer-bottom{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:20px;
+  padding-top:17px;
+  border-top:1px solid rgba(37,40,37,.13);
+}
+.footer-bottom p{
+  margin:0;
+  color:#657073;
+  font-size:10px;
+  line-height:1.6;
+}
+@media(max-width:760px){
+  .site-footer{padding:32px 0 18px}
+  .footer-main{
+    grid-template-columns:1fr 1fr;
+    gap:28px 22px;
+    padding-bottom:25px;
+  }
+  .footer-brand-block{grid-column:1 / -1}
+  .footer-bottom{align-items:flex-start;flex-direction:column;gap:5px}
+}
+@media(max-width:420px){
+  .footer-main{grid-template-columns:1fr;gap:22px}
+  .footer-brand-block{grid-column:auto}
+}
+
+/* About Us — selectable story sections */
+.about-shell{display:flex;flex-direction:column}
+.about-layout{
+  flex:1;
+  min-height:calc(100svh - 96px - 228px);
+  display:grid;
+  grid-template-columns:minmax(320px,.88fr) minmax(0,1.12fr);
+  align-items:center;
+  gap:clamp(48px,8vw,132px);
+  padding-top:76px;
+  padding-bottom:88px;
+}
+.about-selector{max-width:560px}
+.about-eyebrow,.about-content-kicker{
+  margin:0;
+  color:var(--orange);
+  font:800 10px 'Manrope',sans-serif;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+}
+.about-title{
+  max-width:540px;
+  margin:17px 0 16px;
+  color:var(--ink);
+  font:600 clamp(44px,5vw,70px)/.98 'Space Grotesk',sans-serif;
+  letter-spacing:-.075em;
+}
+.about-intro{
+  max-width:390px;
+  margin:0 0 34px;
+  color:#505c5e;
+  font-size:13px;
+  line-height:1.8;
+}
+.about-tabs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;align-items:stretch}
+.about-tab{
+  width:100%;
+  min-height:224px;
+  aspect-ratio:.62 / 1;
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:18px;
+  padding:16px 12px;
+  border:1px solid rgba(37,40,37,.24);
+  border-radius:2px;
+  background:rgba(241,244,242,.22);
+  color:var(--ink);
+  text-align:left;
+  cursor:pointer;
+  transition:background .24s ease,color .24s ease,border-color .24s ease,transform .24s ease;
+}
+.about-tab:hover{transform:translateY(-5px);border-color:var(--orange)}
+.about-tab.is-selected{
+  background:var(--ink);
+  color:#edf0ee;
+  border-color:var(--ink);
+}
+.about-tab-number{
+  color:var(--orange);
+  font:600 11px 'Space Grotesk',sans-serif;
+  letter-spacing:.04em;
+}
+.about-tab-title{
+  max-width:100%;
+  font:700 13px/1.3 'Manrope',sans-serif;
+  letter-spacing:-.025em;
+  overflow-wrap:anywhere;
+}
+.about-tab-arrow{align-self:flex-end;color:var(--orange);transition:transform .22s ease}
+.about-tab.is-selected .about-tab-arrow{transform:translate(2px,-2px)}
+.about-content{
+  position:relative;
+  min-height:420px;
+  display:flex;
+  align-items:center;
+  padding:clamp(36px,5.5vw,82px);
+  border-left:1px solid rgba(37,40,37,.2);
+}
+.about-content-inner{position:relative;max-width:650px;animation:about-copy-in .42s ease both}
+@keyframes about-copy-in{
+  from{opacity:0;transform:translateY(12px)}
+  to{opacity:1;transform:translateY(0)}
+}
+.about-content h2{
+  max-width:560px;
+  margin:22px 0 24px;
+  color:var(--ink);
+  font:600 clamp(36px,4.2vw,60px)/1.02 'Space Grotesk',sans-serif;
+  letter-spacing:-.065em;
+}
+.about-paragraph{
+  max-width:610px;
+  margin:0;
+  color:#465255;
+  font-size:15px;
+  line-height:2;
+}
+.about-content-mark{
+  display:block;
+  margin-top:54px;
+  color:rgba(169,83,50,.24);
+  font:700 clamp(44px,6vw,76px)/.8 'Space Grotesk',sans-serif;
+  letter-spacing:-.1em;
+}
+@media(max-width:1000px){
+  .about-tabs{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+  .about-tab{min-height:174px;aspect-ratio:.9 / 1;padding:15px 13px}
+}
+@media(max-width:900px){
+  .about-layout{grid-template-columns:minmax(280px,.9fr) minmax(0,1.1fr);gap:36px;padding-top:54px;padding-bottom:60px}
+  .about-content{padding:35px 0 35px 34px;min-height:380px}
+  .about-title{font-size:clamp(42px,5.5vw,60px)}
+  .about-paragraph{font-size:14px;line-height:1.9}
+}
+@media(max-width:760px){
+  .about-layout{grid-template-columns:1fr;gap:34px;padding-top:42px;padding-bottom:54px}
+  .about-selector{max-width:none}
+  .about-title{max-width:500px;margin-top:13px;font-size:clamp(43px,10vw,60px)}
+  .about-intro{margin-bottom:25px}
+  .about-tabs{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+  .about-tab{min-height:150px;aspect-ratio:.9 / 1;padding:13px 12px;gap:14px}
+  .about-tab-title{font-size:13px}
+  .about-content{min-height:0;padding:32px 0 10px;border-left:0;border-top:1px solid rgba(37,40,37,.2)}
+  .about-content h2{font-size:clamp(34px,8vw,48px);margin:16px 0 18px}
+  .about-paragraph{font-size:13px;line-height:1.9}
+  .about-content-mark{margin-top:30px;font-size:54px}
+}
+@media(prefers-reduced-motion:reduce){
+  .about-content-inner{animation:none}
+  .about-tab{transition:none}
+}
+
+/* Products & Services — a darkroom-inspired moving film catalogue */
+.products-shell{
+  min-height:100svh;
+  overflow:hidden;
+  color:#eee9df;
+  background:
+    radial-gradient(ellipse at 50% 18%,rgba(169,83,50,.13),transparent 34%),
+    radial-gradient(ellipse at 50% 45%,rgba(214,185,130,.11),transparent 45%),
+    linear-gradient(180deg,#171a18 0%,#20231f 52%,#171a18 100%);
+}
+.products-shell .nav{color:#f1e9da}
+.products-shell .wordmark{color:#f1e9da}
+.products-shell .nav-link{color:#d8d5cb}
+.products-shell .nav-link:hover,.products-shell .nav-link.is-active{color:#d6b982}
+.products-shell .nav-link::after{background:#d6b982}
+.products-intro{
+  position:relative;
+  min-height:435px;
+  padding:0 0 52px;
+  overflow:hidden;
+  isolation:isolate;
+}
+.products-bulb-stage{
+  position:absolute;
+  z-index:0;
+  width:340px;
+  height:390px;
+  top:-112px;
+  left:50%;
+  transform:translateX(-50%);
+  pointer-events:none;
+  opacity:.98;
+}
+.products-bulb-stage::after{
+  content:'';
+  position:absolute;
+  z-index:-1;
+  left:50%;
+  top:46%;
+  width:520px;
+  height:520px;
+  transform:translate(-50%,-8%);
+  border-radius:50%;
+  background:radial-gradient(circle,rgba(218,158,83,.2) 0%,rgba(180,116,57,.09) 30%,transparent 68%);
+  filter:blur(22px);
+}
+.products-bulb-stage canvas{width:100%;height:100%;display:block}
+.products-intro-copy{
+  position:relative;
+  z-index:1;
+  padding-top:225px;
+  text-align:center;
+}
+.products-eyebrow{
+  margin:0;
+  color:#d6b982;
+  font:800 9px 'Manrope',sans-serif;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+}
+.products-intro-copy h1{
+  margin:14px 0 13px;
+  color:#f1e9da;
+  font:600 clamp(46px,6.2vw,78px)/.98 'Space Grotesk',sans-serif;
+  letter-spacing:-.075em;
+}
+.products-intro-copy h1 em,.products-cta h2 em{
+  color:#c47a4b;
+  font-style:normal;
+}
+.products-intro-copy>p:last-child{
+  max-width:510px;
+  margin:0 auto;
+  color:#b7b5ac;
+  font-size:13px;
+  line-height:1.8;
+}
+.catalogue-section{padding:20px 0 0}
+.catalogue-heading{
+  display:flex;
+  align-items:flex-end;
+  justify-content:space-between;
+  gap:32px;
+  padding-bottom:26px;
+}
+.catalogue-heading h2{
+  margin:10px 0 0;
+  color:#f1e9da;
+  font:600 clamp(30px,4vw,46px)/1 'Space Grotesk',sans-serif;
+  letter-spacing:-.065em;
+}
+.catalogue-heading>p{
+  max-width:285px;
+  margin:0 0 3px;
+  color:#9fa29a;
+  font-size:11px;
+  line-height:1.8;
+  text-align:right;
+}
+.catalogue-row{margin:0 0 32px}
+.catalogue-row-label{
+  display:flex;
+  align-items:center;
+  gap:18px;
+  padding-bottom:10px;
+  color:#b5aa94;
+  font:700 9px 'Manrope',sans-serif;
+  letter-spacing:.18em;
+}
+.catalogue-row-label i{height:1px;flex:1;background:rgba(214,185,130,.22)}
+.film-viewport{
+  width:100vw;
+  margin-left:calc(50% - 50vw);
+  overflow:hidden;
+  padding:2px 0;
+  mask-image:linear-gradient(90deg,transparent 0%,#000 4%,#000 96%,transparent 100%);
+  -webkit-mask-image:linear-gradient(90deg,transparent 0%,#000 4%,#000 96%,transparent 100%);
+}
+.film-track{
+  display:flex;
+  width:max-content;
+  will-change:transform;
+  animation-timing-function:linear;
+  animation-iteration-count:infinite;
+}
+.film-track:hover{animation-play-state:paused}
+.film-track.move-left{animation-name:film-catalogue-left}
+.film-track.move-right{animation-name:film-catalogue-right}
+@keyframes film-catalogue-left{
+  from{transform:translate3d(0,0,0)}
+  to{transform:translate3d(-50%,0,0)}
+}
+@keyframes film-catalogue-right{
+  from{transform:translate3d(-50%,0,0)}
+  to{transform:translate3d(0,0,0)}
+}
+.film-strip{
+  position:relative;
+  display:flex;
+  flex:none;
+  gap:18px;
+  width:max-content;
+  padding:19px 22px 18px;
+  border-top:8px solid #292d29;
+  border-bottom:8px solid #292d29;
+  background:#292d29;
+}
+.film-strip::before,.film-strip::after{
+  content:'';
+  position:absolute;
+  left:0;
+  width:100%;
+  height:9px;
+  background-image:radial-gradient(ellipse 4px 3.2px at 50% 50%,#8d8b7e 0 78%,transparent 84%);
+  background-size:26px 9px;
+  background-repeat:repeat-x;
+  pointer-events:none;
+}
+.film-strip::before{top:-9px}
+.film-strip::after{bottom:-9px}
+.film-product-card{
+  flex:none;
+  width:clamp(205px,22vw,276px);
+  padding:9px 9px 12px;
+  background:#171a18;
+  border:1px solid rgba(241,233,218,.13);
+  color:#f1e9da;
+}
+.film-frame-image{
+  overflow:hidden;
+  width:100%;
+  aspect-ratio:1.43 / 1;
+  padding:5px;
+  background:#080a09;
+}
+.film-frame-image img{
+  display:block;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  filter:saturate(.78) contrast(1.08) sepia(.08);
+  transition:filter .45s ease,transform .65s cubic-bezier(.2,.65,.2,1);
+}
+.film-product-card:hover .film-frame-image img{filter:saturate(1) contrast(1.06);transform:scale(1.045)}
+.film-frame-caption{padding:11px 4px 1px}
+.film-frame-type{
+  display:block;
+  margin-bottom:6px;
+  color:#c49b67;
+  font:700 8px 'Manrope',sans-serif;
+  letter-spacing:.15em;
+}
+.film-frame-caption h3{
+  margin:0;
+  color:#f1e9da;
+  font:600 13px/1.35 'Space Grotesk',sans-serif;
+  letter-spacing:-.02em;
+}
+.products-cta{
+  padding-top:65px;
+  padding-bottom:82px;
+  text-align:center;
+}
+.products-cta>p{
+  margin:0;
+  color:#d6b982;
+  font:800 9px 'Manrope',sans-serif;
+  letter-spacing:.2em;
+}
+.products-cta h2{
+  margin:13px 0 20px;
+  color:#f1e9da;
+  font:600 clamp(34px,4.6vw,58px)/1.02 'Space Grotesk',sans-serif;
+  letter-spacing:-.07em;
+}
+.products-cta>a{
+  display:inline-flex;
+  align-items:center;
+  gap:22px;
+  padding:15px 18px;
+  background:#d6b982;
+  color:#20231f;
+  font:800 10px 'Manrope',sans-serif;
+  transition:background .2s ease,transform .2s ease;
+}
+.products-cta>a:hover{background:#f1e9da;transform:translateY(-3px)}
+.products-shell .site-footer{
+  border-top:1px solid rgba(241,233,218,.14);
+  background:rgba(8,10,9,.22);
+}
+.products-shell .footer-wordmark,.products-shell .footer-heading{color:#f1e9da}
+.products-shell .footer-tagline,.products-shell .footer-column p,.products-shell .footer-bottom p{color:#9fa29a}
+.products-shell .footer-email{color:#d6b982}
+.products-shell .footer-email:hover{color:#f1e9da}
+.products-shell .footer-bottom{border-top-color:rgba(241,233,218,.13)}
+@media(max-width:760px){
+  .products-intro{min-height:400px;padding-bottom:40px}
+  .products-bulb-stage{width:290px;height:350px;top:-112px}
+  .products-intro-copy{padding-top:210px}
+  .products-intro-copy h1{font-size:clamp(40px,9vw,60px)}
+  .products-intro-copy>p:last-child{max-width:360px;font-size:12px}
+  .catalogue-heading{align-items:flex-start;flex-direction:column;gap:12px;padding-bottom:20px}
+  .catalogue-heading>p{text-align:left}
+  .catalogue-row{margin-bottom:26px}
+  .film-strip{gap:13px;padding:16px 18px 15px}
+  .film-product-card{width:218px}
+  .products-cta{padding-top:48px;padding-bottom:58px}
+}
+@media(prefers-reduced-motion:reduce){
+  .film-track{animation:none!important}
+  .film-frame-image img,.products-cta>a{transition:none}
+}
+
+/* Interactive, continuous film catalogue */
+.film-viewport{
+  cursor:grab;
+  touch-action:pan-y;
+  user-select:none;
+  -webkit-user-select:none;
+  overscroll-behavior-x:contain;
+}
+.film-viewport.is-dragging{cursor:grabbing}
+.film-track{
+  animation:none!important;
+  transition:none;
+  gap:0;
+}
+.film-strip{gap:18px}
+.film-product-card{
+  appearance:none;
+  -webkit-appearance:none;
+  display:block;
+  border-radius:0;
+  text-align:left;
+  font:inherit;
+  cursor:pointer;
+  user-select:none;
+  -webkit-user-select:none;
+  transition:border-color .22s ease,background .22s ease,transform .22s ease;
+}
+.film-product-card:hover{
+  border-color:rgba(214,185,130,.62);
+  background:#20231f;
+  transform:translateY(-3px);
+}
+.film-product-card:focus-visible{
+  outline:2px solid #d6b982;
+  outline-offset:4px;
+}
+.film-frame-image{display:block}
+.film-frame-title{
+  display:block;
+  margin:0;
+  color:#f1e9da;
+  font:600 13px/1.35 'Space Grotesk',sans-serif;
+  letter-spacing:-.02em;
+}
+
+/* Product detail: photograph on the left, editorial copy on the right */
+.product-modal-backdrop{
+  position:fixed;
+  z-index:1200;
+  inset:0;
+  display:grid;
+  place-items:center;
+  padding:28px;
+  background:rgba(5,7,6,.78);
+  backdrop-filter:blur(9px);
+  -webkit-backdrop-filter:blur(9px);
+  animation:product-modal-fade .22s ease both;
+}
+.product-modal{
+  position:relative;
+  display:grid;
+  grid-template-columns:minmax(0,1.08fr) minmax(300px,.92fr);
+  width:min(1040px,calc(100vw - 56px));
+  max-height:min(760px,86svh);
+  overflow:hidden;
+  background:#232723;
+  border:1px solid rgba(241,233,218,.16);
+  box-shadow:0 28px 100px rgba(0,0,0,.46);
+  animation:product-modal-rise .3s cubic-bezier(.2,.7,.2,1) both;
+}
+.product-modal-image{
+  min-height:500px;
+  background:#101310;
+  overflow:hidden;
+}
+.product-modal-image img{
+  display:block;
+  width:100%;
+  height:100%;
+  min-height:500px;
+  object-fit:cover;
+  filter:saturate(.86) contrast(1.06) sepia(.06);
+}
+.product-modal-copy{
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:flex-start;
+  padding:clamp(30px,5vw,66px);
+  color:#f1e9da;
+}
+.product-modal-copy h2{
+  margin:18px 0 20px;
+  max-width:430px;
+  color:#f1e9da;
+  font:600 clamp(30px,4vw,48px)/1.02 'Space Grotesk',sans-serif;
+  letter-spacing:-.065em;
+}
+.product-modal-copy>p:not(.products-eyebrow){
+  margin:0;
+  max-width:400px;
+  color:#bbb9b0;
+  font:400 14px/1.9 'Manrope',sans-serif;
+}
+.product-modal-note{
+  margin-top:38px;
+  color:#c7a878;
+  font:700 8px 'Manrope',sans-serif;
+  letter-spacing:.18em;
+}
+.product-modal-close{
+  position:absolute;
+  z-index:2;
+  top:14px;
+  right:14px;
+  display:grid;
+  place-items:center;
+  width:42px;
+  height:42px;
+  padding:0;
+  border:1px solid rgba(241,233,218,.24);
+  border-radius:50%;
+  background:rgba(20,23,20,.74);
+  color:#f1e9da;
+  cursor:pointer;
+  transition:background .2s ease,color .2s ease,transform .2s ease;
+}
+.product-modal-close:hover{
+  background:#d6b982;
+  color:#20231f;
+  transform:rotate(90deg);
+}
+@keyframes product-modal-fade{from{opacity:0}to{opacity:1}}
+@keyframes product-modal-rise{from{opacity:0;transform:translateY(16px) scale(.985)}to{opacity:1;transform:translateY(0) scale(1)}}
+@media(max-width:760px){
+  .film-strip{gap:13px}
+  .product-modal-backdrop{padding:12px}
+  .product-modal{
+    grid-template-columns:1fr;
+    width:min(560px,calc(100vw - 24px));
+    max-height:calc(100svh - 24px);
+    overflow-y:auto;
+  }
+  .product-modal-image,.product-modal-image img{
+    min-height:0;
+    height:min(43svh,340px);
+  }
+  .product-modal-copy{padding:27px 26px 32px}
+  .product-modal-copy h2{margin:12px 0 14px;font-size:32px}
+  .product-modal-copy>p:not(.products-eyebrow){font-size:13px;line-height:1.75}
+  .product-modal-note{margin-top:23px}
+}
+@media(prefers-reduced-motion:reduce){
+  .product-modal-backdrop,.product-modal{animation:none}
+  .film-product-card,.product-modal-close{transition:none}
+}
+
+/* Standalone contact page */
+.contact-shell{display:flex;flex-direction:column}
+.contact-layout{flex:1;min-height:calc(100svh - 96px - 228px);display:flex;flex-direction:column;justify-content:center;align-items:flex-start;padding-top:64px;padding-bottom:90px}
+.contact-title{max-width:900px;margin:18px 0 22px;font:600 clamp(48px,7vw,92px)/.98 'Space Grotesk',sans-serif;letter-spacing:-.08em;color:var(--ink)}
+.contact-title em{font-style:normal;color:var(--orange)}
+.contact-copy{max-width:510px;margin:0;color:#505c5e;font-size:14px;line-height:1.9}
+.contact-location{margin:54px 0 0;color:#657073;font:700 9px 'Manrope',sans-serif;letter-spacing:.15em}
+@media(max-width:760px){.contact-layout{min-height:calc(100svh - 76px - 300px);padding-top:45px;padding-bottom:58px}.contact-title{font-size:clamp(46px,11vw,66px)}.contact-copy{font-size:13px}.contact-location{margin-top:38px;font-size:8px}}
+
+/* React / Three.js mounts inside the static HTML page shells */
+#hero-camera-mount,#intro-camera-mount,#products-bulb-mount{width:100%;height:100%}
+#intro-camera-mount{position:absolute;inset:0}
